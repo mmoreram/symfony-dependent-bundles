@@ -187,8 +187,15 @@ trait BundleDependenciesResolver
      */
     private function getBundleDefinitionInstance($bundle)
     {
-        return is_object($bundle)
-            ? $bundle
-            : new $bundle($this);
+        if (is_object($bundle)) {
+            return $bundle;
+        }
+
+        if (is_array($bundle)) {
+            $reflection = new \ReflectionClass($bundle[0]);
+            return $reflection->newInstanceArgs($bundle[1]);
+        }
+
+        return new $bundle($this);
     }
 }

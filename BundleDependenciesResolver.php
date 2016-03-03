@@ -171,9 +171,15 @@ trait BundleDependenciesResolver
      */
     private function getBundleDefinitionNamespace($bundle)
     {
-        return ltrim(is_object($bundle)
-            ? get_class($bundle)
-            : $bundle, ' \\');
+        if (is_object($bundle)) {
+            $class = get_class($bundle);
+        } elseif (is_array($bundle)) {
+            $class = $bundle[0];
+        } else {
+            $class = $bundle;
+        }
+
+        return ltrim($class, ' \\');
     }
 
     /**

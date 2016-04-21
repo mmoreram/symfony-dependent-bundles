@@ -82,4 +82,39 @@ class BundleDependenciesResolverTest extends PHPUnit_Framework_TestCase
             $bundles[2]
         );
     }
+
+    /**
+     * Test resolver3.
+     */
+    public function testResolver3()
+    {
+        $kernel = $this->prophesize('Symfony\Component\HttpKernel\KernelInterface');
+        $bundleDependenciesResolver = new BundleDependenciesResolverAware();
+        $bundles = $bundleDependenciesResolver->getInstancesTest3($kernel->reveal());
+
+        $this->assertInstanceOf(
+            'Mmoreram\SymfonyBundleDependencies\Tests\Bundle1',
+            $bundles[0]
+        );
+
+        $this->assertInstanceOf(
+            'Mmoreram\SymfonyBundleDependencies\Tests\Bundle2',
+            $bundles[1]
+        );
+
+        $this->assertInstanceOf(
+            'Mmoreram\SymfonyBundleDependencies\Tests\Bundle5',
+            $bundles[2]
+        );
+
+        $this->assertInstanceOf(
+            'Mmoreram\SymfonyBundleDependencies\Tests\Bundle6',
+            $bundles[3]
+        );
+
+        $this->assertInstanceOf(
+            'Mmoreram\SymfonyBundleDependencies\Tests\Bundle8',
+            $bundles[4]
+        );
+    }
 }

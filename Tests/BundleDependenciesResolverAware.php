@@ -66,4 +66,25 @@ class BundleDependenciesResolverAware
             $bundles
         );
     }
+
+
+
+    /**
+     * Get bundle instances.
+     *
+     * @param KernelInterface $kernel Kernel
+     *
+     * @return Bundle[] Bundles
+     */
+    public function getInstancesTest3(KernelInterface $kernel)
+    {
+        $bundles = [
+            'Mmoreram\SymfonyBundleDependencies\Tests\Bundle8',
+        ];
+
+        return $this->getBundleInstances(
+            $kernel,
+            $bundles
+        );
+    }
 }
